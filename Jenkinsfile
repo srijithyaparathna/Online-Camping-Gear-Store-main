@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: "${REPO_URL}"
+                checkout scm    
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
 
         stage('Run Containers') {
             steps {
-                bat "docker run -d --name backend -p 5000:5000 ${BACKEND_IMAGE}"
+                bat "docker run -d --name backend -p 4000:4000 ${BACKEND_IMAGE}"
                 bat "docker run -d --name frontend -p 3000:3000 ${FRONTEND_IMAGE}"
             }
         }
