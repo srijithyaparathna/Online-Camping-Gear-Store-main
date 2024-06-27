@@ -5,6 +5,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './home.css'; // Import your home page styles if needed
 
+
 export const Home = () => {
   const categories = ["Tents", "Back Packs", "Stoves" ];
 
