@@ -2,15 +2,14 @@ pipeline {
     agent any
 
     environment {
-        BACKEND_IMAGE = "mern-backend"
-        FRONTEND_IMAGE = "mern-frontend"
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+        BACKEND_IMAGE = "backend"
+        FRONTEND_IMAGE = "frontend"
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/your-repo/your-project.git'
+                git 'https://github.com/srijithyaparathna/Online-Camping-Gear-Store-main'
             }
         }
 
@@ -18,7 +17,7 @@ pipeline {
             steps {
                 script {
                     dir('backend') {
-                        sh 'docker build -t $BACKEND_IMAGE .'
+                        bat 'docker build -t %BACKEND_IMAGE% .'
                     }
                 }
             }
@@ -28,20 +27,7 @@ pipeline {
             steps {
                 script {
                     dir('frontend') {
-                        sh 'docker build -t $FRONTEND_IMAGE .'
-                    }
-                }
-            }
-        }
-
-        stage('Push Images to Docker Hub') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'DOCKER_HUB_CREDENTIALS') {
-                        sh 'docker tag $BACKEND_IMAGE $DOCKER_HUB_CREDENTIALS_USR/$BACKEND_IMAGE'
-                        sh 'docker tag $FRONTEND_IMAGE $DOCKER_HUB_CREDENTIALS_USR/$FRONTEND_IMAGE'
-                        sh 'docker push $DOCKER_HUB_CREDENTIALS_USR/$BACKEND_IMAGE'
-                        sh 'docker push $DOCKER_HUB_CREDENTIALS_USR/$FRONTEND_IMAGE'
+                        bat 'docker build -t %FRONTEND_IMAGE% .'
                     }
                 }
             }
@@ -52,9 +38,9 @@ pipeline {
                 script {
                     // Pull and run the images on the target server
                     // Adjust the commands as necessary for your deployment environment
-                    sh '''
-                        docker pull $DOCKER_HUB_CREDENTIALS_USR/$BACKEND_IMAGE
-                        docker pull $DOCKER_HUB_CREDENTIALS_USR/$FRONTEND_IMAGE
+                    bat '''
+                        docker pull %DOCKER_HUB_CREDENTIALS_USR%/%BACKEND_IMAGE%
+                        docker pull %DOCKER_HUB_CREDENTIALS_USR%/%FRONTEND_IMAGE%
                         docker-compose up -d
                     '''
                 }
