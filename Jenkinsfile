@@ -2,23 +2,47 @@ pipeline {
     agent any
 
     environment {
-        BACKEND_IMAGE = "backend"
-        FRONTEND_IMAGE = "frontend"
+        REPO_URL = 'https://github.com/srijithyaparathna/Online-Camping-Gear-Store-main'
+        BACKEND_IMAGE = 'devops_project-backend'
+        FRONTEND_IMAGE = 'devops_project-frontend'
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                checkout scm    
+                git url: "${REPO_URL}"
             }
         }
 
-        // Add your other stages here for building images and deploying
-    }
+        stage('Cleanup Existing Containers') {
+            steps {
+                script {
+                    bat 'docker rm -f backend frontend || true'
+                }
+            }
+        }
 
-    post {
-        always {
-            cleanWs()
+        stage('Build Backend Image') {
+            steps {
+                dir('BACKEND') {
+                    bat "docker build -t ${BACKEND_IMAGE} ."
+                }
+            }
+        }
+
+        stage('Build Frontend Image') {
+            steps {
+                dir('frontend') {
+                    bat "docker build -t ${FRONTEND_IMAGE} ."
+                }
+            }
+        }
+
+        stage('Run Containers') {
+            steps {
+                bat "docker run -d --name backend -p 5000:5000 ${BACKEND_IMAGE}"
+                bat "docker run -d --name frontend --link backend:backend -p 3000:3000 ${FRONTEND_IMAGE}"
+            }
         }
     }
 }
