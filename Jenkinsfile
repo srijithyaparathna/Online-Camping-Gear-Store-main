@@ -41,7 +41,7 @@ pipeline {
         stage('Run Containers') {
             steps {
                 bat "docker run -d --name backend -p 5000:5000 ${BACKEND_IMAGE}"
-                bat "docker run -d --name frontend --link backend:backend -p 3000:3000 ${FRONTEND_IMAGE}"
+                bat "docker run -d --name frontend -p 3000:3000 ${FRONTEND_IMAGE}"
             }
         }
     }
