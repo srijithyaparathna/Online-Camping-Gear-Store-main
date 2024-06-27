@@ -11,7 +11,7 @@ export const Home = () => {
 
   return (
     <div className="home">
-      <h1>Camping new 2  Equipments</h1>
+      <h1>Camping new 3  Equipments</h1>
       <div className="category-buttons">
         {categories.map((category, index) => (
           // <Link to={`/category/${index + 1}`} key={index}>
