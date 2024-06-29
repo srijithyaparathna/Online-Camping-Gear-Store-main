@@ -10,7 +10,7 @@ export const About = () => {
       </p>
       <h2>Our Mission</h2>
       <p>
-        Our mission is to inspire and enable outdoor enthusiasts to embrace the beauty of nature. We believe that the right camping gear can enhance your outdoor experience, making every journey an adventure to remember. With our carefully curated selection of camping equipment and accessories, we aim to provide you with the tools you need to explore the great outdoors confidently.
+        Our mission is to inspire the  and enable outdoor enthusiasts to embrace the beauty of nature. We believe that the right camping gear can enhance your outdoor experience, making every journey an adventure to remember. With our carefully curated selection of camping equipment and accessories, we aim to provide you with the tools you need to explore the great outdoors confidently.
       </p>
       <h2>Our Promise</h2>
       <p>
