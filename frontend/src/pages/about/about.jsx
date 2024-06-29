@@ -8,7 +8,7 @@ export const About = () => {
       <p>
         Welcome to our camping gear store, where adventure begins and memories are made in the great outdoors. We are your one-stop destination for high-quality camping gear and outdoor essentials. Our mission is to equip outdoor enthusiasts, explorers, and nature lovers with the best gear, ensuring that your camping experience is comfortable, safe, and unforgettable.
       </p>
-      <h2>Our   Mission</h2>
+      <h2>Our the   Mission</h2>
       <p>
         Our mission is to inspire and enable outdoor enthusiasts to embrace the beauty of nature. We believe that the right camping gear can enhance your outdoor experience, making every journey an adventure to remember. With our carefully curated selection of camping equipment and accessories, we aim to provide you with the tools you need to explore the great outdoors confidently.
       </p>
